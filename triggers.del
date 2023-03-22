@@ -21,6 +21,7 @@ Event.OngoingPlayer
 if(IsAlive() && has_triggers())
 if(anyTriggersHeld(_watch_triggers))
 {
+    LogToInspector($'Iterating triggers for {EventPlayer()}');
     foreach(Trigger t in _watch_triggers) {
         if (t.isTriggerHeld())
         {
@@ -35,5 +36,6 @@ void add_trigger(in Player p, in Button[] buttonsToHold, in ()=>void cb) {
     Trigger t = {toHold: buttonsToHold,toUse: cb};
     // `+= [t]` is needed due to storing a struct with a macro in it
     // https://github.com/ItsDeltin/Overwatch-Script-To-Workshop/issues/431#issuecomment-1452732565
+    LogToInspector($'Adding a trigger for {p}, {buttonsToHold}');
     p._watch_triggers += [t];
 } 
